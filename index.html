@@ -256,8 +256,22 @@
           <tr>
             <td><a name="id" id="id"></a><a href="#id-note">identifier</a></td>
             <td style="vertical-align: top;"><br>
+              <span style="color: grey;"><em>Cannot start with:</em></span><br />
+               |, \', ', ,, or #<br/><br/>
+              <span style="color: gray;"><em>permitted characters:</em></span><br>
+              !, #, $, %, &, ', *, +, ,, -, ., /,
+              0-9, <, =, >, ?, @, A-Z, a-z, \, ^, _,
+              |, ~, \% , ¡, ¢, £, ¤, ¥, ¦, §, ¨,
+              ©, ª, «, ¬, \­, ®, ¯, °, ±, ², ³, ´,
+              µ, ¶, ·, ¸, ¹, º, », ¼, ½, ¾, ¿, À,
+              Á, Â, Ã, Ä, Å, Æ, Ç, È, É, Ê, Ë, Ì, Í, Î, Ï, Ð, Ñ, Ò, Ó, Ô, Õ, Ö, ×, Ø,
+Ù, Ú, Û, Ü, Ý, Þ, ß, à, á, â, ã, ä, å, æ, ç, è, é, ê, ë, ì, í, î, ï, ð,
+ñ, ò, ó, ô, õ, ö, ÷, ø, ù, ú, û, ü, ý, þ, ÿ<br/><br />  
+                <span style="color: gray;"><em>This has special meaning and is reserved:</em></span><br>
+              :
             </td>
             <td style="vertical-align: top;"><br>
+              
             </td>
             <td><span style="color: gray;"><em>case insensitive, cannot start
                   with digit</em></span><br>
@@ -280,7 +294,8 @@
           <tr>
             <td><a name="quoted-id" id="quoted-id"></a><a href="#quoted-id-note">quoted identifier</a><br>
               <span style="color: gray;"><em>and escaped identifier</em></span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (set |white space symbol| 3)<br>
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -293,8 +308,13 @@
           </tr>
           <tr>
             <td><a name="local-var" id="local-var"></a><a href="#local-var-note">local variable</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;">; parallel assignment:</span><br>
+              (let ((x 3) (y 4))<br>
+              <span style=""> </span>(+ x y))<br>
+              <br>
+              <span style="color: gray;">; sequential assignment:</span><br>
+              (let* ((x 3) (y (* x x)))<br>
+              <span style=""> </span>(+ x y))</td>
             <td style="vertical-align: top;"><br>
             </td>
             <td><span style="color: gray;">; parallel assignment:</span><br>
@@ -317,8 +337,10 @@
             <td><a name="global-var" id="global-var"></a><a href="#global-var-note">global variable</a><br>
               <span style=""> </span></td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td>(defparameter *x* 3)<br>
               <br>
@@ -331,8 +353,11 @@
                 variable</a><br>
               <span style=""> </span></td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">Only in the shell:</span><br>
+              f(Var).
             </td>
             <td>(makunbound 'x)</td>
             <td>(ns-unmap *ns* 'x)</td>
@@ -341,8 +366,10 @@
             <td><a name="null" id="null"></a><a href="#null-note">null</a><br>
               <span style=""> </span></td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td>nil '()</td>
             <td><span style="color: gray;">; same value as null in Java:</span><br>
@@ -352,16 +379,18 @@
             <td><a name="null-test" id="null-test"></a><a href="#null-test-note">null test</a><br>
               <span style=""> </span></td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td>(null x)</td>
             <td>(nil? x)</td>
           </tr>
           <tr>
             <td><a name="id-as-val" id="id-as-val"></a><a href="#id-as-val-note">identifier as value</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>'x<br>
+              (quote x)</td>
             <td style="vertical-align: top;"><br>
             </td>
             <td>'x<br>
@@ -374,8 +403,10 @@
                 test</a><br>
               <span style=""> </span></td>
             <td style="vertical-align: top;"><br>
+              (is_atom x)
             </td>
             <td style="vertical-align: top;"><br>
+              is_atom(X).
             </td>
             <td>(symbolp 'x)</td>
             <td>(symbol? 'x)</td>
@@ -383,6 +414,8 @@
           <tr>
             <td>identifier equality test</td>
             <td style="vertical-align: top;"><br>
+              (== 'x 'x)<br/>
+              (=:= 'x 'x)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -392,8 +425,7 @@
           <tr>
             <td><a name="non-referential-id" id="non-referential-id"></a><a href="#non-referential-id-note">non-referential identifier</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>'foo</td>
             <td style="vertical-align: top;"><br>
             </td>
             <td>:foo</td>
@@ -404,8 +436,10 @@
                 attributes</a><br>
               <span style="color: gray;"><em>set, get, remove</em></span></td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td style="vertical-align: top;"><br>
+              <span style="color: gray;">none</span><br>
             </td>
             <td>(set 'x 13)<br>
               <br>
