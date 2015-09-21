@@ -375,9 +375,14 @@ table.wiki-content-table {
 }
 
 table.wiki-content-table th {
-  padding: 0.3em 0.7em;
+    padding: 0.5em;
   background-color: #393939;
   color: #99bf17;
+}
+
+table.wiki-content-table th[colspan="5"] {
+    background-color: #444;
+    padding: 0.75em;
 }
 
 table.wiki-content-table th.spacer {
