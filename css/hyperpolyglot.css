@@ -1,0 +1,420 @@
+/* base.css */
+
+img{
+  border-width: 0px;
+}
+
+blockquote{
+  border: 1px dashed #999;
+  padding: 0 1em;
+  background-color: #f4f4f4;
+}
+
+table {
+  empty-cells: show;
+}
+td {
+  text-align: left;
+}
+
+
+form{
+  margin: 0; padding: 0;
+}
+
+a.newpage{
+  color: #933;
+}
+
+#container-wrap-wrap {
+  position: relative;
+}
+
+#page-content{
+  
+}
+
+#container {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  position: relative;
+  z-index: 30;
+  height: 7em;
+}
+
+#header h1{
+  margin: 0;
+  padding: 0;
+}
+#header h2{
+  margin: 0;
+  padding: 0;
+}
+
+#content-wrap{
+  padding:0; margin:0;
+}
+
+/* fixes the peekaboo bug in most of the themes (ie6, ie7)*/
+#content-wrap {
+  _height: 1%;
+  min-height: 1px;
+}
+
+#page-title{
+  margin: 0 0 0.5em 0;
+  padding-top: 0.5em; /* Firefox bug? */
+  font-size: 190%;
+  border-bottom: 1px solid #666;
+}
+
+#main-content{
+  margin-left: 17em;
+  padding: 0 1em;
+}
+
+#license-area {
+  padding: 0.5em 0;
+  color: #555;
+  text-align: center;
+}
+
+table.wiki-content-table{
+  border: 1px solid #888;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0.5em auto;
+}
+table.wiki-content-table td{
+  border: 1px solid #888;
+  padding: 0.3em 0.7em;
+}
+table.wiki-content-table th{
+  border: 0px solid #888;
+  padding: 0.3em 0.7em;
+  background-color: #EEE;
+}
+
+tt{
+  font-family: 'Andale Mono', 'Courier New', Courier, monospace; 
+  font-size: 98%;
+}
+
+
+pre{
+  font-family: 'Andale Mono', 'Courier New', Courier, monospace;
+}
+
+.code { 
+  border: 1px dashed #888;
+  background-color: #EEE;
+  font-family: 'Andale Mono', 'Courier New', Courier, monospace;
+  padding: 0 1em;
+  margin: 0.4em 0;
+  overflow: auto;
+}
+
+code {
+  font-family: 'Andale Mono', 'Courier New', Courier, monospace;
+}
+
+.math-equation{
+  text-align: center;
+  padding: 0.5em 0;
+  height: 1%; /* for IE to blink ;-) */
+}
+
+#MathJax_Message {
+    display: none !important;
+}
+
+.math-inline span.merror {
+    color: red !important;
+}
+
+a.inline-math-error {
+    padding: 0 0.5em;
+    font-weight: bold;
+}
+
+a.math-equation-error {
+    padding: 0 2em;
+    font-weight: bold;
+}
+
+.wiki-parse-error{
+  color: red;
+  padding: 0.2em 0;
+}
+
+hr{
+  margin: 1em 2em;
+  padding: 0;
+  height: 1px;
+  border: none;
+  /*color: #555545;*/
+  color: #DDD;
+  background-color: #AAA;
+  /*background-color: #555545;*/
+}
+
+* html hr {
+  margin: 2px 2em;
+}
+
+input {
+  font-size: 100%; /* ie6 sucks so much... */
+}
+
+div.buttons{
+  text-align: center;
+  padding: 1em 0;
+}
+
+div.buttons.alignleft{
+  text-align: left; 
+}
+
+div.buttons input, input.button, button, file, a.button{
+  margin: 0 2px;
+  padding: 0px 0.5em;
+  text-decoration: none;
+  background-color: #F4F4F4;
+  border: 1px solid #AAA;
+  color: #000;
+}
+div.buttons input:hover, input.button:hover, button:hover,  a.button:hover{
+  background-color: #DDD;
+  color: #000;
+}
+
+input.button.disabled, div.buttons input.disabled{
+  background-color: #F7F7F7;
+  color: #BBB;
+}
+input.button.disabled:hover, div.buttons input.disabled:hover{
+  background-color: #F7F7F7;
+  color: #BBB;
+}
+
+input.checkbox{
+  background-color: #FFF;
+  color: #000;
+}
+
+input.text{
+  border: 1px solid #777;
+  margin: 0 1px;
+  padding: 1px 2px;
+  background-color: #FFF;
+  color: #000;
+}
+
+input.text.invalid{
+  border-color: red;
+}
+
+textarea{
+  font-family: verdana,arial,helvetica,sans-serif;
+  padding: 2px;
+  font-size: 100%;
+  border: 1px solid #777;
+  background-color: #FFF;
+  color: #000;
+}
+
+.hl-default {
+    color: #000;
+}
+.hl-code {
+    color: #000;
+}
+.hl-brackets {
+    color: #000;
+}
+.hl-comment {
+    color: #494;
+}
+.hl-quotes {
+    color: #009;
+}
+.hl-string {
+    color: #009;
+}
+.hl-identifier {
+    color: #000;
+}
+.hl-builtin {
+    color: Teal;
+}
+.hl-reserved {
+    color: #55D;
+}
+.hl-inlinedoc {
+    color: Blue;
+}
+.hl-var {
+    color: #494;
+}
+.hl-url {
+    color: Blue;
+}
+.hl-special {
+    color: Navy;
+  font-weight: bold;
+}
+.hl-number {
+    color: Maroon;
+}
+.hl-inlinetags {
+    color: #949;
+  font-weight: bold;
+}
+.hl-main { 
+   /* background-color: White;*/
+}
+.hl-gutter {
+    background-color: #999999;
+    color: White
+}
+.hl-table {
+  
+}
+
+/* clean.css */
+
+
+#container {
+  margin: 0 20px;
+}
+
+
+#page-title {
+border-bottom: none;
+}
+
+#main-content {
+margin-left: 0em;
+padding: 2px;
+}
+
+#search-top-box {
+display: none;
+}
+
+#page-content p, #page-content .code, #page-content h1, #page-content ul, .math-equation {
+width: 700px;
+}
+
+#page-content .wiki-content-table {
+margin-left: 0em;
+}
+
+#page-content blockquote {
+width: 650px;
+}
+
+tt {
+color: #006060;
+padding-left: 2px;
+padding-right: 1px;
+}
+
+table.wiki-content-table  *, code, table.wiki-content-table tr td span.fixed, table.wiki-content-table tr td span.fixed * {
+font-family: consolas, inconsolata, andale mono, monospace;
+}
+
+*, table.wiki-content-table th *,  table.wiki-content-table td:first-child *, table.wiki-content-table td:first-child {
+font-family: lucida grande, helvetica, arial, san-serif;
+}
+
+h1 span, div#page-title {
+font-family: helvetica, arial, san-serif;
+}
+
+.full-width-divider {
+    border-bottom: none;
+}
+
+.feature {
+  position: relative;
+  height: 200px;
+  padding-bottom: 2em;
+}
+
+#toc-wrapper {
+    display: table;
+    width: 100%;
+    padding: 1em;
+}
+
+#toc-content {
+    display: table-row
+}
+
+#toc-left {
+    display: table-cell;
+    width: 33%;
+}
+
+#toc-main {
+    display: table-cell;
+    width: 33%;
+}
+
+#toc-right {
+    display: table-cell;
+    width: 33%;
+}
+
+table.wiki-content-table {
+    border: none;
+}
+
+table.wiki-content-table th {
+  padding: 0.3em 0.7em;
+  background-color: #393939;
+  color: #99bf17;
+}
+
+table.wiki-content-table th.spacer {
+    color: #393939;
+    text-shadow: none;
+    border: none;
+}
+
+table.wiki-content-table td {
+    border: none;
+}
+
+.full-width-divider.page {
+    background-color: transparent;
+    padding-top: 4em;
+}
+
+th {
+    text-align: center;
+    font-size: 120%;
+    margin: 2em;
+}
+
+th a {
+    font-size: 120%;
+    padding: 1em;
+}
+
+td:first-child {
+    background-color: #2f2f2f;
+}
+
+td:first-child a, td:first-child a:hover {
+    text-decoration: none;
+    color: #99bf17;
+}
+
+tr {
+    border-bottom: 1px solid #333;
+}
