@@ -466,29 +466,25 @@
           </tr>
           <tr>
             <td><a name="true-false" id="true-false"></a><a href="#true-false-note">true and false</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>'true 'false</td>
+            <td>true false</td>
             <td>t nil</td>
             <td>true false</td>
           </tr>
           <tr>
             <td><a name="falsehoods" id="falsehoods"></a><a href="#falsehoods-note">falsehoods</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>'false</td>
+            <td>false</td>
             <td>nil ()</td>
             <td>false nil</td>
           </tr>
           <tr>
             <td><a name="logical-op" id="logical-op"></a><a href="#logical-op-note">logical operators</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
+            <td>(or (not 'true) (and 'true 'false))</td>
+            <td style="vertical-align: top;">
+              (not true) or (true and false).
             </td>
             <td>(or (not t) (and t nil))</td>
             <td>(or (not true) (and true false))</td>
@@ -496,20 +492,18 @@
           <tr>
             <td><a name="relational-op" id="relational-op"></a><a href="#relational-op-note">relational operators</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>== =:= /= =/= &lt; &gt; =&lt; &gt;=</td>
+            <td>== =:= /= =/= &lt; &gt; =&lt; &gt;=</td>
             <td><span style="">=</span> /= &lt; &gt; &lt;= &gt;=</td>
             <td><span style="">=</span> not= &lt; &gt; &lt;= &gt;=</td>
           </tr>
           <tr>
             <td><a name="min-max" id="min-max"></a><a href="#min-max-note">min
                 and max</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>(lists:min 1 2 3)<br>
+              (lists:max 1 2 3)</td>
+            <td>lists:min(1 2 3)<br>
+              lists:max(1 2 3)</td>
             <td>(min 1 2 3)<br>
               (max 1 2 3)</td>
             <td>(min 1 2 3)<br>
@@ -517,10 +511,8 @@
           </tr>
           <tr>
             <td><a name="num-predicates" id="num-predicates"></a><a href="#num-predicates-note">numeric predicates</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>is_number is_integer is_float</td>
+            <td>is_number is_integer is_float</td>
             <td>numberp integerp<br>
               rationalp floatp<br>
               realp complexp</td>
@@ -532,10 +524,8 @@
             <td><a name="arith-op" id="arith-op"></a><a href="#arith-op-note">arithmetic
                 operators</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>+ - * / </td>
+            <td>+ - * / </td>
             <td>+ - * / mod</td>
             <td>+ - * / mod</td>
           </tr>
@@ -543,10 +533,10 @@
             <td><a name="int-div" id="int-div"></a><a href="#int-div-note">integer
                 division</a><br>
               <span style="color: gray;"><em>and remainder</em></span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>(div 7 3)<br>
+              (rem 7 3)</td>
+            <td>div(7 3).<br>
+              rem(7 3).</td>
             <td>(truncate 7 3)<br>
               (rem 7 3)</td>
             <td>(quot 7 3)<br>
@@ -554,9 +544,11 @@
           </tr>
           <tr>
             <td><a name="int-div-zero" id="int-div-zero"></a><a href="#int-div-zero-note">integer division by zero</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              exception error: badarith
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              exception error: an error occurred when evaluating an arithmetic expression
             </td>
             <td><span style="color: gray;">division-by-zero <em>error</em></span></td>
             <td><br>
@@ -564,10 +556,10 @@
           </tr>
           <tr>
             <td><a name="float-div" id="float-div"></a><a href="#float-div-note">float division</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>float:</em></span><br>
+              (/ 7 (* 3 1.0))<br/>(/ 7 (* 3 1))</td>
+            <td><span style="color: gray;"><em>float:</em></span><br>
+              7 / 3 * 1.0.<br/>7 / 3 * 1.</td>
             <td><span style="color: gray;"><em>rational:</em></span><br>
               (/ 7 3)<br>
               <br>
@@ -581,9 +573,11 @@
           </tr>
           <tr>
             <td><a name="float-div-zero" id="float-div-zero"></a><a href="#float-div-zero-note">float division by zero</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              exception error: badarith
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              exception error: an error occurred when evaluating an arithmetic expression
             </td>
             <td><span style="color: gray;">division-by-zero <em>error</em></span></td>
             <td><br>
@@ -591,9 +585,11 @@
           </tr>
           <tr>
             <td><a name="power" id="power"></a><a href="#power-note">power</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (math:pow 2 32)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              math:pow(2, 32).
             </td>
             <td>(expt 2 32)</td>
             <td><span style="color: gray;"><em>returns float:</em></span><br>
@@ -602,9 +598,11 @@
           <tr>
             <td><a name="sqrt" id="sqrt"></a><a href="#sqrt-note">sqrt</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (math:sqrt 2)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              math:sqrt(2).
             </td>
             <td>(sqrt 2)</td>
             <td>(Math/sqrt 2)</td>
@@ -612,28 +610,28 @@
           <tr>
             <td><a name="sqrt-negative-one" id="sqrt-negative-one"></a><a href="#sqrt-negative-one">sqrt -1</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>#c(0.0 1.0)</td>
             <td><span style="color: gray;"><em>(Math/sqrt -1):</em></span> NaN</td>
           </tr>
           <tr>
             <td><a name="transcendental-func" id="transcendental-func"></a><a href="#transcendental-func-note">transcendental functions</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>math:exp math:log math:sin math:cos math:tan math:asin
+              math:acos math:atan math:atan2</td>
+            <td>math:exp math:log math:sin math:cos math:tan math:asin
+              math:acos math:atan math:atan2</td>
             <td>exp log sin cos tan asin acos atan atan</td>
             <td>Math/exp Math/log Math/sin Math/cos Math/tan Math/asin
               Math/acos Math/atan Math/atan2</td>
           </tr>
           <tr>
             <td><a name="float-truncation" id="float-truncation"></a><a href="#float-truncation-note">float truncation</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              trunc
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              trunc
             </td>
             <td><span style="color: gray;"><em>return two values, first is
                   integer:</em></span><br>
@@ -647,9 +645,9 @@
             <td><a name="abs-val" id="abs-val"></a><a href="#abs-val-note">absolute
                 value</a><br>
               <span style="color: gray;"><em>and signum</em></span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">abs
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">abs
             </td>
             <td>abs signum</td>
             <td>Math/abs Math/signum</td>
@@ -657,10 +655,8 @@
           <tr>
             <td><a name="int-overflow" id="int-overflow"></a><a href="#int-overflow-note">integer overflow</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td><span style="color: gray;"><em>none; arbitrary-precision
                   integers</em></span></td>
             <td><span style="color: gray;">clojure.lang.Numbers.throwIntOverflow
@@ -669,20 +665,16 @@
           <tr>
             <td><a name="float-overflow" id="float-overflow"></a><a href="#float-overflow-note">float overflow</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td><span style="color: gray;">floating-point-overflow <em>error</em></span></td>
             <td><span style="color: gray;"><em>not literals:</em></span><br>
               -Infity NaN Infinity</td>
           </tr>
           <tr>
             <td><a name="rational-construction" id="rational-construction"></a><a href="#rational-construction-note">rational construction</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(/ 3 7)<br>
               <br>
               <span style="color: gray;">; literal:</span><br>
@@ -694,10 +686,8 @@
           </tr>
           <tr>
             <td><a name="rational-decomposition" id="rational-decomposition"></a><a href="#rational-decomposition-note">rational decomposition</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(numerator 3/7)<br>
               (denominator 3/7)</td>
             <td>(numerator 3/7)<br>
@@ -705,19 +695,15 @@
           </tr>
           <tr>
             <td><a name="complex-construction" id="complex-construction"></a><a href="#complex-construction-note">complex construction</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>#c(1 2)</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td><a name="complex-decomposition" id="complex-decomposition"></a><a href="#complex-decomposition-note">complex decomposition</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(realpart #c(1 2))<br>
               (imagpart #c(1 2))<br>
               (phase #c(1 2))<br>
@@ -730,9 +716,13 @@
             <td><a name="random-num" id="random-num"></a><a href="#random-num-note">random number</a><br>
               <span style="color: gray;"><em>uniform integer, uniform float,
                   normal float</em></span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (random:uniform 100)<br/>
+              (random:uniform 1.0)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              random:uniform(100).<br/>
+              random:uniform(1.0).
             </td>
             <td>(random 100)<br>
               (random 1.0)<br>
@@ -744,9 +734,13 @@
           </tr>
           <tr>
             <td><a name="random-seed" id="random-seed"></a><a href="#random-seed-note">random seed</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (random:seed)</br>
+              (random:seed 4 2 0)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td>
+              random:seed().</br>
+              random:seed(4 2 0).
             </td>
             <td>(setq *random-state*<br>
               <span style=""> </span>(sb-ext:seed-random-state 17))</td>
@@ -756,20 +750,21 @@
           <tr>
             <td><a name="bit-op" id="bit-op"></a><a href="#bit-op-note">bit
                 operators</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>bsl bsr band bor bxor bnot</td>
+            <td>bsl bsr band bor bxor bnot</td>
             <td>ash <span style="color: gray;"><em>left shift when 2nd
                   argument positive</em></span> logand logior logxor lognot</td>
             <td>bit-shift-left bit-shift-right bit-and bit-or bit-xor bit-not</td>
           </tr>
           <tr>
             <td><a name="binary-octal-hex-literals" id="binary-octal-hex-literals"></a><a href="#binary-octal-hex-literals-note">binary, octal, and hex literals</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>#b101010<br>
+              #o52<br>
+              #x2a</td>
+            <td style="vertical-align: top;">
+              2#101010<br>
+              8#52<br>
+              16#2a</td>
             <td>#b101010<br>
               #o52<br>
               #x2a</td>
@@ -779,9 +774,11 @@
           <tr>
             <td><a name="radix" id="radix"></a><a href="#radix-note">radix</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              #7r60
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              7#60.
             </td>
             <td>(format nil "~7r" 42)</td>
             <td><br>
