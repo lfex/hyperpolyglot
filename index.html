@@ -106,9 +106,13 @@
           <tr>
             <td><a name="show-version" id="show-version"></a><a href="#show-version-note">show version</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;"><em>displayed by repl on startup</em></span><br>
+              (lutil:get-lfe-version)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;"><em>displayed by repl on startup</em></span><br>
+              erlang:system_info(otp_release).
             </td>
             <td>$ sbcl <span style="">--</span>version</td>
             <td><span style="color: gray;"><em>displayed by repl on startup</em></span></td>
@@ -127,9 +131,11 @@
           <tr>
             <td><a name="compiler" id="compiler"></a><a href="#compiler-note">compiler</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              $ lfec module-name.lfe<br>
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              $ erlc module_name.erl<br>
             </td>
             <td><br>
             </td>
@@ -138,9 +144,11 @@
           </tr>
           <tr>
             <td><a name="standalone-executable" id="standalone-executable"></a><a href="#standalone-executable-note">standalone executable</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: grey;"><em>Use escript</em></span><br />
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: grey;"><em>Use escript</em></span><br>
             </td>
             <td>(sb-ext:save-lisp-and-die<br>
               <span style=""> </span>"<span style="color: gray;"><em>executable</em></span>"<br>
@@ -152,7 +160,9 @@
           <tr>
             <td><a name="interpreter" id="interpreter"></a><a href="#interpreter-note">interpreter</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              $ lfe [flags] filename.lfe [args]
+              <br>
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -164,7 +174,7 @@
           </tr>
           <tr>
             <td><a name="shebang" id="shebang"></a><a href="#shebang-note">shebang</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">#!/usr/bin/env lfe<br>
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -177,18 +187,25 @@
           <tr>
             <td><a name="repl" id="repl"></a><a href="#repl-note">repl</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">$ lfe<br>
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: grey;"><em>Erlang doesn't have a true REPL; it has a shell</em></span><br />
+              $ erl<br>
             </td>
             <td>$ sbcl</td>
             <td>$ java -jar /PATH/TO/clojure.jar</td>
           </tr>
           <tr>
             <td><a name="cmd-line-program" id="cmd-line-program"></a><a href="#cmd-line-program-note">command line program</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              $ lfe -eval \<br/>
+              '(lfe_io:format "~p" (list (+ 1 2 3)))'<br>
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              $ erl -eval \<br/>
+              'io:format("~p", [1 + 2 + 3])' \<br/>
+              -noshell -run init stop<br>
             </td>
             <td><br>
             </td>
@@ -198,26 +215,25 @@
           <tr>
             <td><a name="word-separator" id="word-separator"></a><a href="#word-separator-note">word separator</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>whitespace</em></span></td>
+            <td><span style="color: gray;"><em>whitespace</em></span></td>
             <td><span style="color: gray;"><em>whitespace</em></span></td>
             <td><span style="color: gray;"><em>whitespace and commas</em></span></td>
           </tr>
           <tr>
             <td><a name="eol-comment" id="eol-comment"></a><a href="#eol-comment-note">end-of-line comment</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>(+ 1 1) <span style="color: gray;">; adding</span></td>
+            <td>(+ 1 1) <span style="color: gray;">% adding</span></td>
             <td>(+ 1 1) <span style="color: gray;">; adding</span></td>
             <td>(+ 1 1) <span style="color: gray;">; adding</span></td>
           </tr>
           <tr>
             <td><a name="multiple-line-comment" id="multiple-line-comment"></a><a href="#multiple-line-comment-note">multiple line comment</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>
+              <span style="color: grey;"><em>Only in source code; not in REPL</em></span><br />
+              (+ 1 #| adding<br>
+              &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; stuff&nbsp; |#<br>
+              &nbsp;&nbsp; 1)</td>
             <td style="vertical-align: top;"><br>
             </td>
             <td>(+ 1 #| adding<br>
