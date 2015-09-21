@@ -1,4 +1,0 @@
-data
-distributions
-numerical-analysis
-misc-math
