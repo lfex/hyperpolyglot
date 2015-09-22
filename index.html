@@ -802,9 +802,11 @@
             <td><a name="str-test" id="str-test"></a><a href="#str-test-note">string
                 test</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (io_lib:printable_latin1_list "foo")
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              io_lib:printable_latin1_list("foo").
             </td>
             <td>(stringp "foo")</td>
             <td>(string? "foo")</td>
@@ -812,10 +814,8 @@
           <tr>
             <td><a name="str-literal" id="str-literal"></a><a href="#str-litera-notel">string literal</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>"foo bar"</td>
+            <td>"foo bar"</td>
             <td>"foo bar"</td>
             <td>"foo bar"</td>
           </tr>
@@ -823,9 +823,11 @@
             <td><a name="str-test" id="str-test"></a><a href="#str-test-note">unicode
                 test</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (io_lib:printable_unicode_list "foo")
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              io_lib:printable_unicode_list("foo").
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -835,7 +837,9 @@
           <tr>
             <td><a name="str-literal" id="str-literal"></a><a href="#str-litera-notel">unicode literal</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              #"foo bar" <br />
+              (binary ("foo bar" utf8))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -847,16 +851,15 @@
           <tr>
             <td><a name="newline-in-str-literal" id="newline-in-str-literal"></a><a href="#newline-in-str-literal-note">newline in literal</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>yes</em></span></td>
+            <td><span style="color: gray;"><em>yes</em></span></td>
             <td><span style="color: gray;"><em>yes</em></span></td>
             <td><span style="color: gray;"><em>yes</em></span></td>
           </tr>
           <tr>
             <td><a name="str-literal-esc" id="str-literal-esc"></a><a href="#str-literal-esc-note">literal escapes</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              \b \t \n \v \f \r \e \s \d
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -867,7 +870,8 @@
           <tr>
             <td><a name="str-ctor" id="str-ctor"></a><a href="#str-ctor-note">constructor</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (list #\f #\o #\o)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -879,9 +883,11 @@
           <tr>
             <td><a name="fmt-str" id="fmt-str"></a><a href="#fmt-str-note">format
                 string</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lfe_io:format "~p: ~p ~.2f~n" '("Foo" 7 13.457))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              io:format("~p: ~p ~.2f~n", ["Foo", 7, 13.457]).
             </td>
             <td>(format nil "~a: ~a ~,2f" "Foo" 7 13.457)</td>
             <td>(String/format "%s: %d %.2f"<br>
@@ -889,27 +895,73 @@
           </tr>
           <tr>
             <td><a name="fmt-specifiers" id="fmt-specifiers"></a><a href="#fmt-specifiers-note">format specifiers</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top; color: gray;">
+              The following are for lfe_io:format<br/>
+                ~~&nbsp;&nbsp;&nbsp;&nbsp;literal ~<br>
+                ~c&nbsp;&nbsp;&nbsp;&nbsp;ASCII character code<br>
+                ~f&nbsp;&nbsp;&nbsp;&nbsp;scientific notation<br>
+                ~g&nbsp;&nbsp;&nbsp;&nbsp;float for small numbers, scientific for large<br>
+                Each of the previous three may take additional precision formatting options<br/>
+                ~s&nbsp;&nbsp;&nbsp;&nbsp;string<br>
+                ~w&nbsp;&nbsp;&nbsp;&nbsp;standard LFE syntax<br>
+                ~p&nbsp;&nbsp;&nbsp;&nbsp;pretty-printed LFE syntax<br>
+                ~W&nbsp;&nbsp;&nbsp;&nbsp;same as ~w, but takes maximum depth argument<br>
+                ~P&nbsp;&nbsp;&nbsp;&nbsp;same as ~p, but takes maximum depth argument<br/>
+                ~B&nbsp;&nbsp;&nbsp;&nbsp;formats integer to given base<br>
+                ~X&nbsp;&nbsp;&nbsp;&nbsp;like ~B, but takes a prefix argument<br>
+                ~#&nbsp;&nbsp;&nbsp;&nbsp;like ~B, but uses #-separated Erlang prefix<br>
+                ~b&nbsp;&nbsp;&nbsp;&nbsp;like ~B, but prints lowercase<br>
+                ~x&nbsp;&nbsp;&nbsp;&nbsp;like ~X, but prints lowercase<br>
+                ~+&nbsp;&nbsp;&nbsp;&nbsp;like ~#, but prints lowercase<br>
+                ~n&nbsp;&nbsp;&nbsp;&nbsp;newline<br>
+                ~i&nbsp;&nbsp;&nbsp;&nbsp;ignores next term<br>
+              </span>
             </td>
-            <td style="vertical-align: top;"><br>
             </td>
-            <td><span style="color: gray;">~a<span style=""> </span><span style=""> </span>any type, human readable<br>
-                ~s<span style=""> </span><span style=""> </span>any time, read
-                parseable<br>
-                ~%<span style=""> </span><span style=""> </span>newline<br>
-                ~~<span style=""> </span><span style=""> </span>tilde<br>
-                ~c<span style=""> </span><span style=""> </span>character<br>
-                ~,5f<span style=""> </span>5 digits right of decimal mark<br>
-                ~d<span style=""> </span><span style=""> </span>decimal<br>
-                ~x<span style=""> </span><span style=""> </span>hex<br>
-                ~o<span style=""> </span><span style=""> </span>octal<br>
-                ~b<span style=""> </span><span style=""> </span>binary</span></td>
+            <td style="vertical-align: top; color: gray;">
+              The following are for io:format<br/>
+                ~~&nbsp;&nbsp;&nbsp;&nbsp;literal ~<br>
+                ~c&nbsp;&nbsp;&nbsp;&nbsp;ASCII character code<br>
+                ~f&nbsp;&nbsp;&nbsp;&nbsp;scientific notation<br>
+                ~g&nbsp;&nbsp;&nbsp;&nbsp;float for small numbers, scientific for large<br>
+                Each of the previous three may take additional precision formatting options<br/>
+                ~s&nbsp;&nbsp;&nbsp;&nbsp;string<br>
+                ~w&nbsp;&nbsp;&nbsp;&nbsp;standard Erlang syntax<br>
+                ~p&nbsp;&nbsp;&nbsp;&nbsp;pretty-printed Erlang syntax<br>
+                ~W&nbsp;&nbsp;&nbsp;&nbsp;same as ~w, but takes maximum depth argument<br>
+                ~P&nbsp;&nbsp;&nbsp;&nbsp;same as ~p, but takes maximum depth argument<br/>
+                ~B&nbsp;&nbsp;&nbsp;&nbsp;formats integer to given base<br>
+                ~X&nbsp;&nbsp;&nbsp;&nbsp;like ~B, but takes a prefix argument<br>
+                ~#&nbsp;&nbsp;&nbsp;&nbsp;like ~B, but uses #-separated Erlang prefix<br>
+                ~b&nbsp;&nbsp;&nbsp;&nbsp;like ~B, but prints lowercase<br>
+                ~x&nbsp;&nbsp;&nbsp;&nbsp;like ~X, but prints lowercase<br>
+                ~+&nbsp;&nbsp;&nbsp;&nbsp;like ~#, but prints lowercase<br>
+                ~n&nbsp;&nbsp;&nbsp;&nbsp;newline<br>
+                ~i&nbsp;&nbsp;&nbsp;&nbsp;ignores next term<br>
+              </span>
+            </td>
+            <td><span style="color: gray;">
+                ~a&nbsp;&nbsp;&nbsp;&nbsp;any type, human readable<br>
+                ~s&nbsp;&nbsp;&nbsp;&nbsp;any time, read parseable<br>
+                ~%&nbsp;&nbsp;&nbsp;&nbsp;newline<br>
+                ~~&nbsp;&nbsp;&nbsp;&nbsp;tilde<br>
+                ~c&nbsp;&nbsp;&nbsp;&nbsp;character<br>
+                ~,5f&nbsp;&nbsp;5 digits right of decimal mark<br>
+                ~d&nbsp;&nbsp;&nbsp;&nbsp;decimal<br>
+                ~x&nbsp;&nbsp;&nbsp;&nbsp;hex<br>
+                ~o&nbsp;&nbsp;&nbsp;&nbsp;octal<br>
+                ~b&nbsp;&nbsp;&nbsp;&nbsp;binary</span></td>
             <td><br>
             </td>
           </tr>
           <tr>
             <td><a name="compare-str" id="compare-str"></a><a href="#compare-str-note">compare strings</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:equal "foo" "bar")<br/>
+              <span style="color: gray;">Also the comparison operators work, e.g:</span>
+              (== "foo" "bar")<br/>             
+              (< "foo" "bar")<br/>
+              (=< "foo" "bar")<br/>
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -921,7 +973,9 @@
           <tr>
             <td><a name="str-concat" id="str-concat"></a><a href="#str-concat-note">concatenate</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:concat "foo" "bar")<br/>
+              (++ "foo" "bar")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -930,18 +984,22 @@
           </tr>
           <tr>
             <td><a name="str-replicate" id="str-replicate"></a><a href="#str-replicate-note">replicate</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:copies "foo" 3)<br/>
+              (string:chars #\f 3)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td>make-string 3 :initial-element #\f)</td>
+            <td>(make-string 3 :initial-element #\f)</td>
             <td>(String. (into-array<br>
               <span style=""> </span>(. Character TYPE)<br>
               <span style=""> </span>(repeat 3 \f)))</td>
           </tr>
           <tr>
             <td><a name="translate-case" id="translate-case"></a><a href="#translate-case-note">translate case</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:to_lower "FOO")<br>
+              (string:to_upper "foo")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -951,10 +1009,8 @@
           </tr>
           <tr>
             <td><a name="capitalize" id="capitalize"></a><a href="#capitalize-note">capitalize</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td><span style="color: gray;">; "Foo Bar":</span><br>
               (string-capitalize "foo bar")</td>
             <td><br>
