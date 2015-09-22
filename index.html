@@ -988,7 +988,8 @@
             <td><a name="str-replicate" id="str-replicate"></a><a href="#str-replicate-note">replicate</a></td>
             <td style="vertical-align: top;">
               (string:copies "foo" 3)<br/>
-              (string:chars #\f 3)
+              (string:chars #\f 3)<br/>
+              (lists:duplicate 3 #\f)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1589,7 +1590,9 @@
               <span style="color: gray;"><em>head</em></span><br />
               exception error: badarg<br/>
               <span style="color: gray;"><em>tail</em></span><br />
-              ()
+              ()<br/>
+              <span style="color: gray;"><em>cons pattern</em></span><br />
+              exception error: #(badmatch ())
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1618,19 +1621,21 @@
           </tr>
           <tr>
             <td>nth element</td>
+            <td><span style="color: gray;">indexed from one</span><br>
+              (lists:nth 3 '(1 2 3 4))</td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td><span style="color: gray;">; indexed from zero:</span><br>
+            <td><span style="color: gray;">indexed from zero</span><br>
               (nth 2 '(1 2 3 4))</td>
             <td>(nth '(1 2 3 4) 2)</td>
           </tr>
           <tr>
             <td>out-of-bounds behavior</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              exception error: function_clause
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              exception error: no function clause matching
             </td>
             <td>nil</td>
             <td><span style="color: gray;"><em>raises</em>
@@ -1638,17 +1643,17 @@
           </tr>
           <tr>
             <td>element index</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(position 7 '(5 6 7 8))</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td>concatenate<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (++ '(1 2 3) '(4 5 6)) <br/>
+              (lists:append '(1 2 3) '(4 5 6))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1658,7 +1663,8 @@
           <tr>
             <td><a href="#take">take</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:sublist '(1 2 3 4) 2)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1668,9 +1674,10 @@
           <tr>
             <td><a href="#drop">drop</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:nthtail 2 '(1 2 3 4))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
             </td>
             <td>(nthcdr 2 '(1 2 3 4))</td>
             <td>(drop 2 '(1 2 3 4))</td>
@@ -1678,18 +1685,20 @@
           <tr>
             <td>last element<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:last '(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
             </td>
             <td>(car (last '(1 2 3)))</td>
             <td>(last '(1 2 3))</td>
           </tr>
           <tr>
             <td>all but last element</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:droplast '(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
             </td>
             <td>(butlast '(1 2 3))</td>
             <td>(butlast '(1 2 3))</td>
@@ -1697,9 +1706,10 @@
           <tr>
             <td>reverse<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:reverse '(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
             </td>
             <td>(reverse '(1 2 3))</td>
             <td>(reverse '(1 2 3))</td>
@@ -1707,7 +1717,9 @@
           <tr>
             <td><a href="#sort">sort</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:sort '(3 2 4 1))<br/>
+              (lists:sort #'>/2 '(3 2 4 1))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1717,7 +1729,8 @@
           <tr>
             <td>dedupe<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:usort '(1 1 2 3))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1728,7 +1741,8 @@
           <tr>
             <td>membership<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:member 7 '(1 2 3))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1738,24 +1752,22 @@
           </tr>
           <tr>
             <td><a href="#map">map</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:map (lambda (x)(* x x)) '(1 2 3))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td>(mapcar<br>
-              <span style=""> </span>(lambda (x) (* x x))<br>
-              <span style=""> </span>'(1 2 3))</td>
+            <td>(mapcar (lambda (x) (* x x)) '(1 2 3))</td>
             <td>(map #(* % %) '(1 2 3))</td>
           </tr>
           <tr>
             <td><a href="#filter">filter</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:filter (lambda (x) (> x 2)) '(1 2 3))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td>(remove-if-not<br>
-              <span style=""> </span>(lambda (x) (&gt; x 2))<br>
-              <span style=""> </span>'(1 2 3))<br>
+            <td>(remove-if-not (lambda (x) (&gt; x 2)) '(1 2 3))<br>
               <br>
               <span style="color: gray;">; remove-if returns complement</span></td>
             <td>(filter #(&gt; % 2) '(1 2 3))<br>
@@ -1764,18 +1776,18 @@
           </tr>
           <tr>
             <td><a href="#reduce">reduce</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:foldl #'*/2 1 '(1 2 3 4))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td>(reduce '-<br>
-              <span style=""> </span>'(1 2 3 4)<br>
-              <span style=""> </span>:initial-value 0)</td>
-            <td>(reduce - 0 '(1 2 3 4))</td>
+            <td>(reduce '* '(1 2 3 4) :initial-value 1)</td>
+            <td>(reduce * 1 '(1 2 3 4))</td>
           </tr>
           <tr>
             <td><a href="#right-fold">right fold</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:foldr #'-/2 0 '(1 2 3 4))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1787,88 +1799,93 @@
           </tr>
           <tr>
             <td>iterate</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:foreach<br/>
+              &nbsp;&nbsp;(lambda (x)<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;(io:format "~p~n" `(,x))<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;(io:format "~p~n" `(,(- x))))<br/>
+              &nbsp;&nbsp;'(1 2 3))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
             <td>(dolist (x '(1 2 3))<br>
-              <span style=""> </span>(print x)<br>
-              <span style=""> </span>(print (- x)))</td>
+              &nbsp;&nbsp;(print x)<br>
+              &nbsp;&nbsp;(print (- x)))</td>
             <td>(doseq [x '(1 2 3)]<br>
-              <span style=""> </span>(println x)<br>
-              <span style=""> </span>(println (- x)))</td>
+              &nbsp;&nbsp;(println x)<br>
+              &nbsp;&nbsp;(println (- x)))</td>
           </tr>
           <tr>
             <td><a href="#universal-predicate">universal predicate</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:all<br/>
+              &nbsp;&nbsp;(lambda (i) (== 0 (rem i 2)))<br/>
+              &nbsp;&nbsp;'(1 2 3 4))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
             <td>(every<br>
-              <span style=""> </span>(lambda (i) (= 0 (rem i 2)))<br>
-              <span style=""> </span>'(1 2 3 4))</td>
+              &nbsp;&nbsp;(lambda (i) (= 0 (rem i 2)))<br>
+              &nbsp;&nbsp;'(1 2 3 4))</td>
             <td>(every? #(= 0 (rem % 2)) '(1 2 3 4))</td>
           </tr>
           <tr>
             <td><a href="#existential-predicate">existential predicate</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:any<br/>
+              &nbsp;&nbsp;(lambda (i) (== 0 (rem i 2)))<br/>
+              &nbsp;&nbsp;'(1 2 3 4))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
             <td>(some<br>
-              <span style=""> </span>(lambda (i) (= 0 (rem i 2)))<br>
-              <span style=""> </span>'(1 2 3 4))</td>
+              &nbsp;&nbsp;(lambda (i) (= 0 (rem i 2)))<br>
+              &nbsp;&nbsp;'(1 2 3 4))</td>
             <td>(some #(= 0 (rem % 2)) '(1 2 3 4))</td>
           </tr>
           <tr>
             <td>list comprehension</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lc ((<- file "ABCDEFGH")<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<- rank (lists:seq 1 9)))<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;(++ `(,file) (integer_to_list rank)))<br/>
             </td>
             <td style="vertical-align: top;"><br>
             </td>
             <td><br>
             </td>
             <td>(for<br>
-              <span style=""> </span>[file "ABCDEFGH" rank (range 1 9)]<br>
-              <span style=""> </span>(format "%c%d" file rank))</td>
+              &nbsp;&nbsp;[file "ABCDEFGH" rank (range 1 9)]<br>
+              &nbsp;&nbsp;(format "%c%d" file rank))</td>
           </tr>
           <tr>
             <td>shuffle<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(shuffle '(1 2 3 4))</td>
           </tr>
           <tr>
             <td>set head</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(defparameter *a* '(1 2 3))<br>
               (setf (car *a*) 3)</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td>set tail</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(defparameter *a* '(1 2 3))<br>
               (setf (cdr *a*) '(4 5 6))</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td>manipulate back</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(defparameter *a* '(1 2 3))<br>
               (push 4 *a*)<br>
               (pop *a*)</td>
@@ -1877,7 +1894,8 @@
           </tr>
           <tr>
             <td>flatten</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:flatten '(1 2 (3 (4))))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1888,27 +1906,27 @@
           <tr>
             <td>associative array lookup<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (assoc 'key2 '((key1 "val1") (key2 "val2")))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td>(assoc 3 '((1 2) (3 4)))</td>
+            <td>(assoc :key2 '((:key1 "val1") (:key2 "val2")))</td>
             <td><span style="color: gray;"><em>none, see note</em></span></td>
           </tr>
           <tr>
             <td>flat associative array lookup<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td>(getf '(1 2 3 4) 3)</td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td>(getf '(:key1 "val1" :key2 "val2") :key2)</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td><a href="#pair-literal">pair literal</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              '(1 . 2)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1917,17 +1935,17 @@
           </tr>
           <tr>
             <td>cons cell test</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(cons '(1 . 2))<br>
               (not (atom '(1 . 2)))</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td>translate elements recursively</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (sublis '((1 . 2) (3 . 4))<br/>
+              '(1 (3 3 (1))))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
