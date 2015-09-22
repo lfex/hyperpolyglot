@@ -1340,7 +1340,11 @@
           </tr>
           <tr>
             <td><a name="broken-down-datetime-type" id="broken-down-datetime-type"></a><a href="#broken-down-datetime-type-note">broken-down datetime type</a></td>
-            <td style="vertical-align: top;"><br>
+            <td><span style="color: gray;"><em>No dedicated type; a 3-tuple is used for timestamps, and <br/>a 2-tuple for date and time:</em><br>
+                <br>
+                #(megaseconds seconds microseconds)<br />
+                <br>
+                #(#(year month day) #(hour minute second))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1361,7 +1365,9 @@
           </tr>
           <tr>
             <td><a name="current-datetime" id="current-datetime"></a><a href="#current-datetime-note">current datetime</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (erlang:timestamp)<br/>
+              (calendar:local_time)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1370,11 +1376,12 @@
           </tr>
           <tr>
             <td><a name="current-unix-epoch" id="current-unix-epoch"></a><a href="#current-unix-epoch-note">current unix epoch</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (erlang:system_time 'seconds)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td>gray|; seconds since Jan 1, 1900:##<br>
+            <td>; seconds since Jan 1, 1900<br>
               (get-universal-time)</td>
             <td>(/ (System/currentTimeMillis) 1000.0)</td>
           </tr>
