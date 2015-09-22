@@ -1018,7 +1018,9 @@
           </tr>
           <tr>
             <td><a href="#string-trim">trim</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:strip " foo " 'both #\ )<br />
+              
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1030,7 +1032,13 @@
           <tr>
             <td><a name="pad" id="pad"></a><a href="#pad-note">pad</a><br>
               <span style="color: gray;"><em>on right, on left</em></span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;">; right</span><br/>
+              (string:right "foo" 10)<br/>
+              (lfe_io:format "~10.8s~n" '("foo"))<br/>
+              <span style="color: gray;">; left</span><br/>
+              (string:left "foo" 10)<br/>
+              (lfe_io:format "~-10.8s~n" '("foo"))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1041,7 +1049,8 @@
           </tr>
           <tr>
             <td><a name="num-to-str" id="num-to-str"></a><a href="#num-to-str-note">number to string</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (++ "Value: " (integer_to_list 8))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1052,7 +1061,8 @@
           </tr>
           <tr>
             <td><a name="str-to-num" id="str-to-num"></a><a href="#str-to-num-note">string to number</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (+ 7 (list_to_integer "12"))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1065,7 +1075,8 @@
           </tr>
           <tr>
             <td><a name="split" id="split"></a><a href="#split-note">split</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:tokens "foo \tbar\nbaz" '(9 10 #\ ))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1079,7 +1090,8 @@
           <tr>
             <td><a name="str-join" id="str-join"></a><a href="#str-join-note">string
                 join</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:join '("foo" "bar" "baz") " ")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1094,18 +1106,22 @@
           <tr>
             <td><a name="str-len" id="str-len"></a><a href="#str-len-note">length</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (length "foo")
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              length("foo").
             </td>
             <td>(length "foo")</td>
             <td>(.length "foo")</td>
           </tr>
           <tr>
             <td><a name="index-substr" id="index-substr"></a><a href="#index-substr-note">index of substring</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (string:str "foo bar" "bar")
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              string:str("foo bar", "bar").
             </td>
             <td>(search "bar" "foo bar")</td>
             <td>(.indexOf "foo bar" "bar")</td>
@@ -1113,7 +1129,11 @@
           <tr>
             <td><a name="extract-substr" id="extract-substr"></a><a href="#extract-substr-note">extract substring</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;">; until position n</span><br/>
+              (string:sub_string "foo bar" 5 7)<br/>
+              <span style="color: gray;">; for n chars</span><br/>
+              (string:substr "foo bar" 5 3)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1122,7 +1142,9 @@
           </tr>
           <tr>
             <td><a name="char-literal" id="char-literal"></a><a href="#char-literal-note">character literal</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              #\A #\Z #\a #\z #\? #\#<br/>
+              <span style="color: gray;"><em>Currently control characters are ASCII-code only</em></span><br/>
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1134,7 +1156,8 @@
           <tr>
             <td><a name="char-test" id="char-test"></a><a href="#char-test-note">test characters</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (and (>= x 0) (=< x 255))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1149,7 +1172,9 @@
           <tr>
             <td><a name="chr-ord" id="chr-ord"></a><a href="#chr-ord-note">chr
                 and ord</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              '(97)<br/>
+              #\a
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1160,7 +1185,8 @@
           </tr>
           <tr>
             <td><a name="str-to-char-array" id="str-to-char-array"></a><a href="#str-to-char-array-note">to array of characters</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              '(#\f #\o #\o)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1172,7 +1198,8 @@
           <tr>
             <td><a name="lookup-char" id="lookup-char"></a><a href="#lookup-char-note">character lookup</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lists:nth 1 "foo")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
