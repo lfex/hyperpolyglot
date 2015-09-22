@@ -267,9 +267,11 @@
               |, ~, \% , ¡, ¢, £, ¤, ¥, ¦, §, ¨,
               ©, ª, «, ¬, \­, ®, ¯, °, ±, ², ³, ´,
               µ, ¶, ·, ¸, ¹, º, », ¼, ½, ¾, ¿, À,
-              Á, Â, Ã, Ä, Å, Æ, Ç, È, É, Ê, Ë, Ì, Í, Î, Ï, Ð, Ñ, Ò, Ó, Ô, Õ, Ö, ×, Ø,
-Ù, Ú, Û, Ü, Ý, Þ, ß, à, á, â, ã, ä, å, æ, ç, è, é, ê, ë, ì, í, î, ï, ð,
-ñ, ò, ó, ô, õ, ö, ÷, ø, ù, ú, û, ü, ý, þ, ÿ<br/><br />  
+              Á, Â, Ã, Ä, Å, Æ, Ç, È, É, Ê, Ë, Ì, Í, Î, Ï,
+              Ð, Ñ, Ò, Ó, Ô, Õ, Ö, ×, Ø, Ù, Ú, Û, Ü,
+              Ý, Þ, ß, à, á, â, ã, ä, å, æ, ç, è, é, ê, ë,
+              ì, í, î, ï, ð, ñ, ò, ó, ô, õ, ö, ÷, ø,
+              ù, ú, û, ü, ý, þ, ÿ <br /><br />  
                 <span style="color: gray;"><em>This has special meaning and is reserved:</em></span><br>
               :
             </td>
@@ -1219,35 +1221,32 @@
           </tr>
           <tr>
             <td><a name="regex-literal" id="regex-literal"></a><a href="#regex-literal-note">literal</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>use a string:</em></span><br>
+              "\\b\\d{5}\\b"</td>
+            <td><span style="color: gray;"><em>use a string:</em></span><br>
+              "\\b\\d{5}\\b"</td>
             <td><span style="color: gray;"><em>use a string:</em></span><br>
               "\\b\\d{5}\\b"</td>
             <td>#"\b\d{5}\b"</td>
           </tr>
           <tr>
             <td><a name="char-class-abbrev" id="char-class-abbrev"></a><a href="#char-class-abbrev-note">character class abbrevations</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>. \d \D \s \S \w \W</td>
+            <td>. \d \D \s \S \w \W</td>
             <td>. \d \D \s \S \w \W</td>
             <td>. \d \D \s \S \w \W</td>
           </tr>
           <tr>
             <td><a name="regex-anchors" id="regex-anchors"></a><a href="#regex-anchors-note">anchors</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>^ $ \b \B</td>
+            <td>^ $ \A \b \B \G \z \Z</td>
             <td>^ $ \b \B</td>
             <td>^ $ \A \b \B \G \z \Z</td>
           </tr>
           <tr>
             <td><a name="regex-test" id="regex-test"></a><a href="#regex-test-note">match test</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (re:run "foo bar" "bar")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1259,7 +1258,8 @@
           </tr>
           <tr>
             <td><a name="case-insensitive-regex" id="case-insensitive-regex"></a><a href="#case-insensitive-regex-note">case insensitive match test</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (re:run "foo BAR" "bar" '(caseless))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1269,7 +1269,9 @@
           </tr>
           <tr>
             <td><a name="subst" id="subst"></a><a href="#subst-note">substitution</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (re:replace "foo bar baz" "ba" "EL")<br/>
+              (re:replace "foo bar baz" "ba" #"EL" '(global))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1287,7 +1289,8 @@
           </tr>
           <tr>
             <td><a name="group-capture" id="group-capture"></a><a href="#group-capture-note">group capture</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (re:run "2010-06-03" "(\\d{4})-(\\d{2})-(\\d{2})")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -1311,7 +1314,11 @@
           </tr>
           <tr>
             <td><a name="backreference" id="backreference"></a><a href="#backreference-note">backreference in match and substitution</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (re:run "sense and sensibility" "(sens|respons)e and \\1ibility")<br/>
+              (re:replace "sense and sensibility"
+                          "(sens|respons)e and \\1ibility"
+                          "dumb and dumber")
             </td>
             <td style="vertical-align: top;"><br>
             </td>
