@@ -2309,7 +2309,12 @@
           </tr>
           <tr>
             <td><a href="#defstruct">defstruct</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (defrecord account<br/>
+              &nbsp;&nbsp;(id 0)<br/>
+              &nbsp;&nbsp;(balance 0.0))<br/>
+              <span style="color: gray;"><em>or</em></span><br/>
+              (defrecord account id balance)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2318,7 +2323,10 @@
           </tr>
           <tr>
             <td><a href="#struct">struct</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (set a (make-account))<br/>
+              <span style="color: gray;"><em>or</em></span><br/>
+              (set a (make-account id 3 balance 17.12))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2331,7 +2339,8 @@
           <tr>
             <td><a href="#struct-getter">struct getter</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (account-id a)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2341,7 +2350,8 @@
           <tr>
             <td><a href="#struct-setter">struct setter</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (set-account-balance a 100)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2351,10 +2361,8 @@
           <tr>
             <td><a href="#struct-predicate">struct predicate</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(account-p a)</td>
             <td><span style="color: gray;"><em>none</em></span></td>
           </tr>
