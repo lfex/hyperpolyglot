@@ -2122,9 +2122,11 @@
           <tr>
             <td><a name="dict-literal" id="dict-literal"></a><a href="#dict-literal-note">literal</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              #M(a 1 b 2 c 3)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              #{a => 1,b => 2,c => 3}.
             </td>
             <td><span style="color: gray;"><em>none</em></span></td>
             <td><span style="color: gray;">; clojure.lang.PersistentArrayMap:</span><br>
@@ -2132,9 +2134,14 @@
           </tr>
           <tr>
             <td><a name="dict-ctor" id="dict-ctor"></a><a href="#dict-ctor-note">constructor</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (map 'a 1 'b 2 'c 3)<br/>
+              (maps:new)<br/>
+              (maps:from_list '(#(a 1) #(b 2) #(c 3)))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:new().<br/>
+              maps:from_list([{a,1},{b,2},{c,3}]).
             </td>
             <td>(defparameter *h* (make-hash-table :test 'equal))<br>
               <br>
@@ -2145,9 +2152,11 @@
           <tr>
             <td><a name="dict-pred" id="dict-pred"></a><a href="#dict-pred-note">predicate</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (is_map m)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              is_map(M).
             </td>
             <td>(hash-table-p *h*)</td>
             <td>(map? ih)</td>
@@ -2155,9 +2164,11 @@
           <tr>
             <td><a name="dict-size" id="dict-size"></a><a href="#dict-size-note">size</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:size m)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:size(M).
             </td>
             <td>(hash-table-count *h*)</td>
             <td>(count ih)</td>
@@ -2165,9 +2176,15 @@
           <tr>
             <td><a name="dict-lookup" id="dict-lookup"></a><a href="#dict-lookup-note">lookup</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:get 'c #m(a 1 b 2 c 3))<br/>
+              (mref #m(a 1 b 2 c 3) 'c)<br/>
+              (set `#m(c ,val) #m(a 1 b 2 c 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:get(c,#{a => 1,b => 2,c => 3}).
+              <br/>
+              #{c := Val} = #{a => 1,b => 2,c => 3}.
             </td>
             <td>(gethash "t" *h*)</td>
             <td>(get ih "t")<br>
@@ -2178,18 +2195,25 @@
           </tr>
           <tr>
             <td><a name="dict-update" id="dict-update"></a><a href="#dict-update-note">update</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:update 'c 4 #m(a 1 b 2 c 3))<br/>
+              (mupd #m(a 1 b 2 c 3) 'c 4)<br/>
+              (maps:put 'c 4 #m(a 1 b 2 c 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:update(c,4,#{a => 1,b => 2,c => 3}).<br/>
+              maps:put(c,4,#{a => 1,b => 2,c => 3}).
             </td>
             <td>(setf (gethash "t" *h*) 1)</td>
             <td>(def ih2 (assoc ih "t" 2))</td>
           </tr>
           <tr>
             <td><a name="dict-missing-key" id="dict-missing-key"></a><a href="#dict-missing-key-note">missing key behavior</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;">exception error: #(badkey ...)</span>
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;">exception error: {badkey,...}</span>
             </td>
             <td><span style="color: gray;"><em>returns</em> nil</span></td>
             <td><span style="color: gray;"><em>returns</em> nil</span></td>
@@ -2197,27 +2221,35 @@
           <tr>
             <td><a name="dict-is-key-present" id="dict-is-key-present"></a><a href="#dict-is-key-present-note">is key present</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:is_key 'c m)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:is_key(c,M).
             </td>
             <td>(nth-value 1 (gethash "t" *h*))</td>
             <td>(contains? ih "t")</td>
           </tr>
           <tr>
             <td><a name="dict-dele" id="dict-dele"></a><a href="#dict-del-note">delete</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:remove 'c m)<br/>
+              (maps:remove keys m)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:remove(c,M).<br/>
+              maps:without([Keys], M)
             </td>
             <td>(remhash "t" *h*)</td>
             <td>(def ih2 (dissoc ih "t"))</td>
           </tr>
           <tr>
             <td><a name="dict-merge" id="dict-merge"></a><a href="#dict-merge-note">merge</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:merge m1 m2)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:merge(M1,M2).
             </td>
             <td><br>
             </td>
@@ -2226,10 +2258,8 @@
           </tr>
           <tr>
             <td><a name="dict-invert" id="dict-invert"></a><a href="#dict-invert-note">invert</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td><br>
             </td>
             <td>(require 'clojure.set)<br>
@@ -2238,10 +2268,8 @@
           </tr>
           <tr>
             <td><a name="dict-iter" id="dict-iter"></a><a href="#dict-iter-note">iterate</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>(maps:map ...) creates new map</em></span></td>
+            <td><span style="color: gray;"><em>maps:map(...). creates new map</em></span></td>
             <td>(maphash<br>
               <span style=""> </span>(lambda (k v)<br>
               <span style=""> </span><span style=""> </span>(print k)<br>
@@ -2253,9 +2281,15 @@
           </tr>
           <tr>
             <td><a name="dict-key-val-lists" id="dict-key-val-lists"></a><a href="#dict-key-val-lists-note">keys and values as lists</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (maps:keys m)<br/>
+              (maps:values m)<br/>
+              (maps:to_list
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              maps:keys(M).<br/>
+              maps:values(M).<br/>
+              maps:to_list(M).
             </td>
             <td><span style="color: gray;"><em>none</em></span></td>
             <td>(def hkeys (map (fn [p] (first p)) ih))<br>
