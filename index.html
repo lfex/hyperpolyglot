@@ -1969,9 +1969,11 @@
           <tr>
             <td><a name="fixed-len-array-literal" id="fixed-len-array-literal"></a><a href="#fixed-len-array-literal-note">literal</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              #(1 2 3)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              {1,2,3}.
             </td>
             <td>#(1 2 3)</td>
             <td>[1 2 3]</td>
@@ -1979,9 +1981,11 @@
           <tr>
             <td>constructor<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (tuple 1 2 3)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              {1,2,3}.
             </td>
             <td>(vector 1 2 3)</td>
             <td>(vector 1 2 3)</td>
@@ -1989,18 +1993,22 @@
           <tr>
             <td>size<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (size #(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              size({1,2,3}).
             </td>
             <td>(length #(1 2 3))</td>
             <td>(count [1 2 3])</td>
           </tr>
           <tr>
             <td>lookup</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (element 1 #(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              element(1, {1,2,3}).
             </td>
             <td>(elt #(1 2 3) 0) <span style="color: gray;"><em>or</em></span><br>
               (aref #(1 2 3) 0)</td>
@@ -2008,9 +2016,11 @@
           </tr>
           <tr>
             <td>update</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (setelement 3 #(1 2 3) 4)
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              setelement(3, {1,2,3}, 4).
             </td>
             <td>(setq v [1 2 3])<br>
               (setf (aref v 2) 4)</td>
@@ -2018,9 +2028,11 @@
           </tr>
           <tr>
             <td>out-of-bounds behavior</td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;">exception error: badarg</span>
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;">exception error: bad argument</span>
             </td>
             <td><span style="color: gray;"><em>raises</em>
                 sb-kernel:index-too-large-error</span></td>
@@ -2030,9 +2042,11 @@
           <tr>
             <td>array to list<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (tuple_to_list #(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              tuple_to_list({1,2,3}).
             </td>
             <td>(coerce #(1 2 3) 'list)</td>
             <td>(seq [1 2 3])</td>
@@ -2040,29 +2054,27 @@
           <tr>
             <td>list to array<br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+               (list_to_tuple '(1 2 3))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              list_to_tuple [1,2,3]).
             </td>
             <td>(coerce '(1 2 3) 'vector)</td>
             <td>(vec '(1 2 3))</td>
           </tr>
           <tr>
             <td>reverse</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(reverse #(1 2 3))</td>
             <td><br>
             </td>
           </tr>
           <tr>
             <td>sort</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(sort #(2 4 1 3) #'&lt;)</td>
             <td><br>
             </td>
@@ -2079,10 +2091,8 @@
           </tr>
           <tr>
             <td>filter</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(remove-if-not (lambda (x) (&gt; x 2)) #(1 2 3))<br>
               <br>
               <span style="color: gray;">; also remove-if</span></td>
@@ -2091,10 +2101,8 @@
           </tr>
           <tr>
             <td>reduce</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td><br>
             </td>
             <td><br>
