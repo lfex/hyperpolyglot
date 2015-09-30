@@ -2380,28 +2380,26 @@
           <tr>
             <td><a href="#define-function">define function</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (defun add (x y) (+ x y))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              add(X,Y) -> X + Y.
             </td>
             <td>(defun add (x y) (+ x y))</td>
             <td>(defn add [x y] (+ x y))</td>
           </tr>
           <tr>
             <td>can function and variable share name</td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>yes</em></span></td>
+            <td><span style="color: gray;"><em>no</em></span></td>
             <td><span style="color: gray;"><em>yes</em></span></td>
             <td><span style="color: gray;"><em>no</em></span></td>
           </tr>
           <tr>
             <td><a href="#optional-argument">optional argument</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>Convention: pass option tuple, list of tuples, or map</em></span></td>
+            <td><span style="color: gray;"><em>Convention: pass option tuple, list of tuples, or map</em></span></td>
             <td>(defun add (a &amp;optional b)<br>
               <span style=""> </span>(if (null b) a (+ a b)))</td>
             <td>(defn add ([a] a) ([a b] (+ a b)))<br>
@@ -2412,10 +2410,8 @@
           </tr>
           <tr>
             <td><a href="#variable-arguments">variable number of arguments</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>no</em></span></td>
+            <td><span style="color: gray;"><em>no</em></span></td>
             <td>(defun add (a &amp;rest b)<br>
               <span style=""> </span>(if (null b)<br>
               <span style=""> </span><span style=""> </span>a<br>
@@ -2426,10 +2422,8 @@
           </tr>
           <tr>
             <td><a href="#default-value">default value</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(defun add (a &amp;optional (b 0))<br>
               <span style=""> </span>(+ a b))</td>
             <td>(defn add<br>
@@ -2438,10 +2432,8 @@
           </tr>
           <tr>
             <td><a href="#named-parameter">named parameter</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>Convention: pass option tuple, list of tuples, or map</em></span></td>
+            <td><span style="color: gray;"><em>Convention: pass option tuple, list of tuples, or map</em></span></td>
             <td>(defun logarithm (&amp;key number base)<br>
               <span style=""> </span>(/ (log number) (log base)))<br>
               <span style=""> </span><br>
@@ -2452,7 +2444,8 @@
           </tr>
           <tr>
             <td><a href="#return-multiple-values">return multiple values</a></td>
-            <td style="vertical-align: top;"><br>
+            <td>(defun sqrts (x)<br>
+              &nbsp;&nbsp;`#(,(math:sqrt x) ,(- (math:sqrt x))))
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2463,7 +2456,8 @@
           <tr>
             <td><a href="#multiple-values-local-variables">assign multiple
                 values to local variables</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (let ((`#(,r1 ,r2) (sqrts 3))) r2)
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2475,10 +2469,8 @@
           <tr>
             <td><a href="#multiple-values-global-variables">assign multiple
                 values to global variables</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(multiple-value-setq (r1 r2)<br>
               <span style=""> </span>(sqrts 3))</td>
             <td><span style="color: gray;"><em>none</em></span></td>
@@ -2486,36 +2478,32 @@
           <tr>
             <td><a href="#list-to-multiple-values">convert list to multiple
                 values</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>multiple values are lists</em></span></td>
+            <td><span style="color: gray;"><em>multiple values are lists</em></span></td>
             <td>(values-list '(1 2 3))</td>
             <td><span style="color: gray;"><em>multiple values are lists</em></span></td>
           </tr>
           <tr>
             <td><a href="#multiple-values-list">assign multiple values to list</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>multiple values are lists</em></span></td>
+            <td><span style="color: gray;"><em>multiple values are lists</em></span></td>
             <td>(multiple-value-list (sqrts 3))</td>
             <td><span style="color: gray;"><em>multiple values are lists</em></span></td>
           </tr>
           <tr>
             <td><a href="#tail-call">tail call optimization</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>yes</em></span></td>
+            <td><span style="color: gray;"><em>yes</em></span></td>
             <td><span style="color: gray;"><em>yes for sbcl</em></span></td>
             <td><span style="color: gray;"><em>yes with</em></span> recur</td>
           </tr>
           <tr>
             <td><a href="#lambda">lambda</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (lambda (x) (* x x))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              fun(X) -> X * X end.
             </td>
             <td>(lambda (x) (* x x))</td>
             <td>#(* % %)<br>
@@ -2526,9 +2514,12 @@
           </tr>
           <tr>
             <td><a href="#apply">apply</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              (funcall (lambda (x) (* x x)) 2)<br/>
+              (apply (lambda (x) (* x x)) '(2))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              apply(fun(X) -> X * X end, [2]).
             </td>
             <td>((lambda (x) (* x x)) 2)<br>
               <span style=""> </span><br>
