@@ -2544,19 +2544,15 @@
           <tr>
             <td><a href="#progn">progn</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td>progn prog1 prog2</td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>progn prog1 prog2</td>
             <td>do <span style="color: gray;"><em>none</em></span> <span style="color: gray;"><em>none</em></span></td>
           </tr>
           <tr>
             <td><a href="#loop">loop</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(setq i 1)<br>
               (loop (print "hello")<br>
               <span style=""> </span>(if (&gt; i 10)<br>
@@ -2570,10 +2566,8 @@
           </tr>
           <tr>
             <td><a href="#do">do</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(do ((i 1) (sum 0))<br>
               <span style=""> </span>((&gt; i 100) sum)<br>
               <span style=""> </span>(setq sum (+ sum i))<br>
@@ -2583,10 +2577,8 @@
           </tr>
           <tr>
             <td><a href="#dotimes">dotimes</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
+            <td><span style="color: gray;"><em>none</em></span></td>
+            <td><span style="color: gray;"><em>none</em></span></td>
             <td>(dotimes (i 10 nil)<br>
               <span style=""> </span>(format t "hello~%"))</td>
             <td>(dotimes [_ 10]<br>
@@ -2595,18 +2587,28 @@
           <tr>
             <td><a href="#if">if</a><br>
               <span style=""> </span></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
+            <td>(if (&lt; x 0) (- x) x)</td>
+            <td style="vertical-align: top;">
+              if X &lt; 0 -> -X;<br/>
+              &nbsp;&nbsp;&nbsp;X &gt;= 0 -> X<br/>
+              end
             </td>
             <td>(if (&lt; x 0) (- x) x)</td>
             <td>(if (&lt; x 0) (- x) x)</td>
           </tr>
           <tr>
             <td><a href="#when">when</a></td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;"><em>Only used in guards</em></span><br>
+              (defun print<br/>
+              &nbsp;((x y) (when (< x y))<br/>
+              &nbsp;&nbsp;&nbsp;"x is less than y")<br/>
+              &nbsp;((_ _)
+              &nbsp;&nbsp;&nbsp;'false))
             </td>
-            <td style="vertical-align: top;"><br>
+            <td style="vertical-align: top;">
+              <span style="color: gray;"><em>Only used in guards</em></span><br>
+              
             </td>
             <td>(when (&lt; x y)<br>
               <span style=""> </span>(print "x is less ")<br>
@@ -2617,38 +2619,20 @@
           </tr>
           <tr>
             <td><a href="#cond">cond</a></td>
+            <td>(cond<br/>
+              &nbsp;&nbsp;((&gt; x 0) 1)<br>
+              &nbsp;&nbsp;((=:= x 0) 0)<br>
+              &nbsp;&nbsp;('true -1))</td>
             <td style="vertical-align: top;"><br>
             </td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td>(cond ((&gt; x 0) 1)<br>
-              <span style=""> </span>((= x 0) 0)<br>
-              <span style=""> </span>(t -1))</td>
-            <td>(cond (&gt; x 0) 1<br>
-              <span style=""> </span>(= x 0) 0<br>
-              <span style=""> </span>true -1)</td>
-          </tr>
-          <tr>
-            <td><a href="#lazy-evaluation">lazy evaluation</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td><br>
-            </td>
-            <td><br>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="#continuations">continuations</a></td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td style="vertical-align: top;"><br>
-            </td>
-            <td><br>
-            </td>
-            <td><br>
-            </td>
+            <td>(cond<br/>
+              &nbsp;&nbsp;((&gt; x 0) 1)<br>
+              &nbsp;&nbsp;((= x 0) 0)<br>
+              &nbsp;&nbsp;(t -1))</td>
+            <td>(cond<br/>
+              &nbsp;&nbsp;(&gt; x 0) 1<br>
+              &nbsp;&nbsp;(= x 0) 0<br>
+              &nbsp;&nbsp;true -1)</td>
           </tr>
           <tr>
             <th colspan="5"><a name="exceptions" id="exceptions"></a><a href="#exceptions-note">exceptions</a></th>
