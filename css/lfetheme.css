@@ -576,6 +576,10 @@ a img {
   position: relative;
 }
 
+.full-width-divider.page {
+  overflow-x: auto;
+}
+
 .highlight-module {
   list-style-type: none;
   display: table-cell;
@@ -1128,7 +1132,7 @@ pre code {
   text-shadow: 0px 1px 0px #000;
   margin: 0;
   padding: 0;
-  
+
 }
 
 ul + pre {
