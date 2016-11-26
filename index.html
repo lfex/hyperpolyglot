@@ -28,7 +28,7 @@
         </div>
       </div><!-- #header -->
     </div><!-- #header-wrapper -->
-    
+
     <div class="wrapper feature">
       <h1>
         LFE Hyperpolyglot
@@ -36,7 +36,7 @@
       <p class="intro">A syntactical comparison of <br/>
         LFE, Erlang, Common Lisp, &amp; Clojure</p>
     </div>
-    
+
     <div class="full-width-divider">
       <ul class="wrapper highlights">
 
@@ -52,7 +52,7 @@
                 <li><a href="#dates-time">dates and time</a></li>
                 <li><a href="#lists">lists</a></li>
                 <li><a href="#fixed-length-arrays">fixed-length arrays</a></li>
-              </ul>              
+              </ul>
             </div>
             <div id="toc-main">
               <ul>
@@ -79,12 +79,12 @@
             </div>
           </div>
         </div>
-        
+
       </ul>
     </div>
-    
+
     <div class="full-width-divider page">
-      
+
       <table class="wiki-content-table">
         <tbody>
           <tr>
@@ -210,9 +210,10 @@
               'io:format("~p", [1 + 2 + 3])' \<br/>
               -noshell -run init stop<br>
             </td>
-            <td><br>
-            </td>
-            <td><br>
+            <td style="vertical-align: top;">
+                $ sbcl --eval \<br/>
+                '(format t "~s" (list (+ 1 2 3)))' \<br/>
+                --eval '(sb-ext:quit)'
             </td>
           </tr>
           <tr>
@@ -271,12 +272,12 @@
               Ð, Ñ, Ò, Ó, Ô, Õ, Ö, ×, Ø, Ù, Ú, Û, Ü,
               Ý, Þ, ß, à, á, â, ã, ä, å, æ, ç, è, é, ê, ë,
               ì, í, î, ï, ð, ñ, ò, ó, ô, õ, ö, ÷, ø,
-              ù, ú, û, ü, ý, þ, ÿ <br /><br />  
+              ù, ú, û, ü, ý, þ, ÿ <br /><br />
                 <span style="color: gray;"><em>This has special meaning and is reserved:</em></span><br>
               :
             </td>
             <td style="vertical-align: top;"><br>
-              
+
             </td>
             <td><span style="color: gray;"><em>case insensitive, cannot start
                   with digit</em></span><br>
@@ -961,7 +962,7 @@
             <td style="vertical-align: top;">
               (string:equal "foo" "bar")<br/>
               <span style="color: gray;">Also the comparison operators work, e.g:</span>
-              (== "foo" "bar")<br/>             
+              (== "foo" "bar")<br/>
               (< "foo" "bar")<br/>
               (=< "foo" "bar")<br/>
             </td>
@@ -1023,7 +1024,7 @@
             <td><a href="#string-trim">trim</a></td>
             <td style="vertical-align: top;">
               (string:strip " foo " 'both #\ )<br />
-              
+
             </td>
             <td style="vertical-align: top;"><br>
             </td>
@@ -2608,7 +2609,7 @@
             </td>
             <td style="vertical-align: top;">
               <span style="color: gray;"><em>Only used in guards</em></span><br>
-              
+
             </td>
             <td>(when (&lt; x y)<br>
               <span style=""> </span>(print "x is less ")<br>
